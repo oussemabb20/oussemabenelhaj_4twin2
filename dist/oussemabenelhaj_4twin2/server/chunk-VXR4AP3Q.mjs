@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-5XUXGTUW.mjs";var t=[{path:"",loadComponent:()=>import("./chunk-KRI2AMMK.mjs").then(o=>o.CourseListComponent)},{path:"new",loadComponent:()=>import("./chunk-5KA5HXV4.mjs").then(o=>o.CourseFormComponent)},{path:":id",loadComponent:()=>import("./chunk-BRIT2P72.mjs").then(o=>o.CourseDetailComponent)},{path:":id/edit",loadComponent:()=>import("./chunk-5KA5HXV4.mjs").then(o=>o.CourseFormComponent)}];export{t as COURSE_ROUTES};

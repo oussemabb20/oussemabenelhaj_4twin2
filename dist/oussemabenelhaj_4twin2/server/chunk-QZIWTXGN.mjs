@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-5XUXGTUW.mjs";var t=[{path:"",loadComponent:()=>import("./chunk-MQOTVN5T.mjs").then(o=>o.EnrollmentListComponent)},{path:"new",loadComponent:()=>import("./chunk-DM33BMGO.mjs").then(o=>o.EnrollmentFormComponent)},{path:":id",loadComponent:()=>import("./chunk-Y7GTM57W.mjs").then(o=>o.EnrollmentDetailComponent)},{path:":id/edit",loadComponent:()=>import("./chunk-DM33BMGO.mjs").then(o=>o.EnrollmentFormComponent)}];export{t as ENROLLMENT_ROUTES};

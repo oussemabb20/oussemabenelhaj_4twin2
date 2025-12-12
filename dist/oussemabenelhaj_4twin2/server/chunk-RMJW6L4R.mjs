@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-5XUXGTUW.mjs";var o=[{path:"",loadComponent:()=>import("./chunk-UFSCFJ2X.mjs").then(t=>t.StudentListComponent)},{path:"new",loadComponent:()=>import("./chunk-ABQPPVPE.mjs").then(t=>t.StudentFormComponent)},{path:":id",loadComponent:()=>import("./chunk-T6LGFFUA.mjs").then(t=>t.StudentDetailComponent)},{path:":id/edit",loadComponent:()=>import("./chunk-ABQPPVPE.mjs").then(t=>t.StudentFormComponent)}];export{o as STUDENT_ROUTES};

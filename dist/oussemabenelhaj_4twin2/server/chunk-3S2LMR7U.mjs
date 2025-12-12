@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-5XUXGTUW.mjs";var o=[{path:"",loadComponent:()=>import("./chunk-T4IQ5OZ6.mjs").then(t=>t.DepartmentListComponent)},{path:"new",loadComponent:()=>import("./chunk-CCXZ4ER5.mjs").then(t=>t.DepartmentFormComponent)},{path:":id",loadComponent:()=>import("./chunk-PUCLIJWC.mjs").then(t=>t.DepartmentDetailComponent)},{path:":id/edit",loadComponent:()=>import("./chunk-CCXZ4ER5.mjs").then(t=>t.DepartmentFormComponent)}];export{o as DEPARTMENT_ROUTES};
