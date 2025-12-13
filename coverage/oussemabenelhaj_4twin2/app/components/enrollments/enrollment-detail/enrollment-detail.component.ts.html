@@ -1,0 +1,259 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for app/components/enrollments/enrollment-detail/enrollment-detail.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">app/components/enrollments/enrollment-detail</a> enrollment-detail.component.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>13/13</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>3/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>7/7</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { EnrollmentService } from '../../../services';
+import { Enrollment } from '../../../models';
+import { LoadingSpinnerComponent } from '../../../shared';
+&nbsp;
+@Component({
+  selector: 'app-enrollment-detail',
+  standalone: true,
+  imports: [CommonModule, RouterLink, LoadingSpinnerComponent],
+  template: `
+    &lt;div class="page animate-fade-in"&gt;
+      &lt;a routerLink="/enrollments" class="back"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"&gt;&lt;path d="M19 12H5m7 7-7-7 7-7"/&gt;&lt;/svg&gt;Back to Enrollments&lt;/a&gt;
+      &lt;app-loading-spinner *ngIf="loading"&gt;&lt;/app-loading-spinner&gt;
+      &lt;article class="detail-card" *ngIf="!loading &amp;&amp; item"&gt;
+        &lt;header class="card-header"&gt;
+          &lt;div class="icon"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+          &lt;div class="info"&gt;&lt;h1&gt;Enrollment #{{ item.idEnrollment }}&lt;/h1&gt;&lt;span class="status-badge" [class]="item.status.toLowerCase()"&gt;{{ item.status }}&lt;/span&gt;&lt;/div&gt;
+          &lt;a [routerLink]="['/enrollments', item.idEnrollment, 'edit']" class="btn btn-primary"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"&gt;&lt;path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/&gt;&lt;path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/&gt;&lt;/svg&gt;Edit&lt;/a&gt;
+        &lt;/header&gt;
+        &lt;section class="card-body"&gt;
+          &lt;h3&gt;Enrollment Information&lt;/h3&gt;
+          &lt;div class="info-grid"&gt;
+            &lt;div class="info-item"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;circle cx="12" cy="8" r="5"/&gt;&lt;path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/&gt;&lt;/svg&gt;&lt;div&gt;&lt;label&gt;Student&lt;/label&gt;&lt;span&gt;{{ item.student?.firstName }} {{ item.student?.lastName }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class="info-item"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/&gt;&lt;/svg&gt;&lt;div&gt;&lt;label&gt;Course&lt;/label&gt;&lt;span&gt;{{ item.course?.name }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class="info-item"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="4" width="18" height="18" rx="2"/&gt;&lt;path d="M16 2v4M8 2v4M3 10h18"/&gt;&lt;/svg&gt;&lt;div&gt;&lt;label&gt;Enrollment Date&lt;/label&gt;&lt;span&gt;{{ item.enrollmentDate }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class="info-item"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/&gt;&lt;path d="M22 4 12 14.01l-3-3"/&gt;&lt;/svg&gt;&lt;div&gt;&lt;label&gt;Grade&lt;/label&gt;&lt;span class="grade" [class.na]="item.grade === null"&gt;{{ item.grade ?? 'Not graded' }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  `,
+  styles: [`
+    .page { padding: var(--space-8); max-width: 900px; margin: 0 auto; }
+    .back { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text-secondary); font-size: 0.875rem; margin-bottom: var(--space-4); &amp;:hover { color: var(--primary-400); } }
+    .detail-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); overflow: hidden; }
+    .card-header { background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); padding: var(--space-8); display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+    .icon { width: 72px; height: 72px; border-radius: var(--radius-xl); background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; svg { width: 36px; height: 36px; color: white; } }
+    .info { flex: 1; color: white; h1 { margin: 0 0 var(--space-2); font-size: 1.5rem; } }
+    .card-header .status-badge { background: rgba(255,255,255,0.2); color: white; &amp;::before { background: white; } }
+    .card-header .btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); &amp;:hover { background: rgba(255,255,255,0.25); } }
+    .card-body { padding: var(--space-8); h3 { font-size: 0.875rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-5); } }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+    .info-item { display: flex; gap: var(--space-4); svg { width: 20px; height: 20px; color: #f472b6; flex-shrink: 0; margin-top: 2px; } label { display: block; font-size: 0.6875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1); } span { font-size: 0.9375rem; } }
+    .grade { font-weight: 600; &amp;.na { color: var(--text-muted); font-weight: 400; } }
+    @media (max-width: 768px) { .page { padding: var(--space-4); } .card-header { flex-direction: column; text-align: center; } .info-grid { grid-template-columns: 1fr; } }
+  `]
+})
+export class EnrollmentDetailComponent implements OnInit {
+  private readonly svc = inject(EnrollmentService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  item: Enrollment | null = null;
+  loading = true;
+&nbsp;
+  ngOnInit(): void { const id = this.route.snapshot.params['id']; if (id) { this.svc.getById(+id).subscribe({ next: d =&gt; { this.item = d; this.loading = false; }, error: () =&gt; { void this.router.navigate(['/enrollments']); } }); } }
+}
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-12-13T22:25:08.289Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

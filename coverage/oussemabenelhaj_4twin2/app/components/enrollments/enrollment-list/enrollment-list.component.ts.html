@@ -1,0 +1,322 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for app/components/enrollments/enrollment-list/enrollment-list.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">app/components/enrollments/enrollment-list</a> enrollment-list.component.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">96.66% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>29/30</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">60% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">92.3% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>12/13</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>16/16</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { EnrollmentService } from '../../../services';
+import { Enrollment } from '../../../models';
+import { LoadingSpinnerComponent, ConfirmDialogComponent } from '../../../shared';
+&nbsp;
+@Component({
+  selector: 'app-enrollment-list',
+  standalone: true,
+  imports: [CommonModule, RouterLink, FormsModule, LoadingSpinnerComponent, ConfirmDialogComponent],
+  template: `
+    &lt;div class="page animate-fade-in"&gt;
+      &lt;header class="page-header"&gt;
+        &lt;div&gt;&lt;h1&gt;Enrollments&lt;/h1&gt;&lt;p&gt;Manage student enrollments&lt;/p&gt;&lt;/div&gt;
+        &lt;a routerLink="/enrollments/new" class="btn btn-primary"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"&gt;&lt;path d="M12 5v14m-7-7h14"/&gt;&lt;/svg&gt;Add Enrollment&lt;/a&gt;
+      &lt;/header&gt;
+      &lt;div class="card"&gt;
+        &lt;div class="toolbar"&gt;
+          &lt;div class="search"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="11" cy="11" r="8"/&gt;&lt;path d="m21 21-4.35-4.35"/&gt;&lt;/svg&gt;&lt;input type="text" placeholder="Search enrollments..." [(ngModel)]="search" (input)="filter()"&gt;&lt;/div&gt;
+          &lt;span class="count"&gt;{{ filtered.length }} enrollments&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;app-loading-spinner *ngIf="loading"&gt;&lt;/app-loading-spinner&gt;
+        &lt;div class="table-wrap" *ngIf="!loading"&gt;
+          &lt;table class="table"&gt;
+            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Student&lt;/th&gt;&lt;th&gt;Course&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Grade&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+            &lt;tbody&gt;
+              &lt;tr *ngFor="let e of filtered"&gt;
+                &lt;td&gt;&lt;div class="student"&gt;&lt;div class="avatar" [style.background]="getColor(e)"&gt;{{ initials(e) }}&lt;/div&gt;&lt;span&gt;{{ e.student?.firstName }} {{ e.student?.lastName }}&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="course-tag"&gt;{{ e.course?.name }}&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;{{ e.enrollmentDate }}&lt;/td&gt;
+                &lt;td&gt;&lt;span class="grade" [class.na]="e.grade === null"&gt;{{ e.grade ?? '—' }}&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="status-badge" [class]="e.status.toLowerCase()"&gt;{{ e.status }}&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;div class="actions"&gt;&lt;a [routerLink]="['/enrollments', e.idEnrollment]" class="btn btn-ghost btn-icon-sm"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"&gt;&lt;path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/&gt;&lt;circle cx="12" cy="12" r="3"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a [routerLink]="['/enrollments', e.idEnrollment, 'edit']" class="btn btn-ghost btn-icon-sm"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"&gt;&lt;path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/&gt;&lt;path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;button class="btn btn-ghost btn-icon-sm" (click)="confirmDel(e)"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"&gt;&lt;path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr *ngIf="filtered.length === 0"&gt;&lt;td colspan="6"&gt;&lt;div class="empty"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"&gt;&lt;path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/&gt;&lt;/svg&gt;&lt;h3&gt;No enrollments found&lt;/h3&gt;&lt;p&gt;Add your first enrollment&lt;/p&gt;&lt;a routerLink="/enrollments/new" class="btn btn-primary"&gt;Add Enrollment&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;app-confirm-dialog [isOpen]="showDel" title="Delete Enrollment" message="Delete this enrollment?" (confirmed)="del()" (cancelled)="showDel = false"&gt;&lt;/app-confirm-dialog&gt;
+  `,
+  styles: [`
+    .page { padding: var(--space-8); max-width: 1440px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-6); flex-wrap: wrap; gap: var(--space-4); h1 { margin-bottom: var(--space-1); } p { color: var(--text-secondary); } }
+    .card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); overflow: hidden; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--border-subtle); flex-wrap: wrap; gap: var(--space-4); }
+    .search { display: flex; align-items: center; gap: var(--space-3); background: var(--bg-base); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: var(--space-2) var(--space-4); min-width: 300px; svg { width: 18px; height: 18px; color: var(--text-muted); } input { border: none; background: none; color: var(--text-primary); font-size: 0.9375rem; width: 100%; &amp;::placeholder { color: var(--text-muted); } &amp;:focus { outline: none; } } }
+    .count { font-size: 0.875rem; color: var(--text-secondary); }
+    .table-wrap { overflow-x: auto; }
+    .student { display: flex; align-items: center; gap: var(--space-3); }
+    .avatar { width: 36px; height: 36px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.75rem; }
+    .course-tag { display: inline-block; padding: var(--space-1) var(--space-3); background: rgba(45, 212, 191, 0.1); color: var(--accent-400); border-radius: var(--radius-md); font-size: 0.8125rem; font-weight: 500; }
+    .grade { font-weight: 600; &amp;.na { color: var(--text-muted); font-weight: 400; } }
+    .actions { display: flex; gap: var(--space-1); }
+    .empty { padding: var(--space-16) var(--space-8); text-align: center; svg { width: 64px; height: 64px; color: var(--text-muted); margin-bottom: var(--space-4); } h3 { margin-bottom: var(--space-2); } p { color: var(--text-secondary); margin-bottom: var(--space-6); } }
+    @media (max-width: 768px) { .page { padding: var(--space-4); } .search { min-width: 100%; } }
+  `]
+})
+export class EnrollmentListComponent implements OnInit {
+  private readonly svc = inject(EnrollmentService);
+  items: Enrollment[] = [];
+  filtered: Enrollment[] = [];
+  loading = true;
+  showDel = false;
+  selected: Enrollment | null = null;
+  search = '';
+  colors = ['#6366f1', '#14b8a6', '#f59e0b', '#ec4899', '#8b5cf6'];
+&nbsp;
+  ngOnInit(): void { this.load(); }
+  load(): void { this.svc.getAll().subscribe({ next: d =&gt; { this.items = d; this.filtered = d; this.loading = false; }, error: () =&gt; this.loading = false }); }
+  filter(): void { const t = this.search.toLowerCase(); this.filtered = this.items.filter(i =&gt; (i.student?.firstName + ' ' + i.student?.lastName + ' ' + i.course?.name).toLowerCase().includes(t)); }
+  initials(e: Enrollment): string { return e.student ? (e.student.firstName[0] + e.student.lastName[0]).toUpperCase() : <span class="branch-1 cbranch-no" title="branch not covered" >'??';</span> }
+  getColor(e: Enrollment): string { return this.colors[(e.idEnrollment || <span class="branch-1 cbranch-no" title="branch not covered" >0)</span> % this.colors.length]; }
+  confirmDel(e: Enrollment): void { this.selected = e; this.showDel = true; }
+  del(): void { if (this.selected?.idEnrollment) { this.svc.delete(this.selected.idEnrollment).subscribe({ next: () =&gt; { this.items = this.items.filter(i =&gt; i.idEnrollment !== this.selected?.idEnrollment); this.filter(); this.showDel = false; }, error: <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >this.showDel = false </span>}); } }
+}
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-12-13T22:25:08.289Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    
