@@ -60,7 +60,7 @@ import { LoadingSpinnerComponent, ConfirmDialogComponent } from '../../../shared
   `]
 })
 export class EnrollmentListComponent implements OnInit {
-  private svc = inject(EnrollmentService);
+  private readonly svc = inject(EnrollmentService);
   items: Enrollment[] = [];
   filtered: Enrollment[] = [];
   loading = true;

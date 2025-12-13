@@ -6,8 +6,8 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class DepartmentService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/Depatment`;
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environment.apiUrl}/Depatment`;
 
   getAll(): Observable<Department[]> {
     return this.http.get<Department[]>(`${this.apiUrl}/getAllDepartment`);

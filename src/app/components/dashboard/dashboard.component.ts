@@ -233,10 +233,10 @@ import { LoadingSpinnerComponent } from '../../shared';
   `]
 })
 export class DashboardComponent implements OnInit {
-  private studentService = inject(StudentService);
-  private departmentService = inject(DepartmentService);
-  private courseService = inject(CourseService);
-  private enrollmentService = inject(EnrollmentService);
+  private readonly studentService = inject(StudentService);
+  private readonly departmentService = inject(DepartmentService);
+  private readonly courseService = inject(CourseService);
+  private readonly enrollmentService = inject(EnrollmentService);
 
   loading = true;
   stats = { students: 0, departments: 0, courses: 0, enrollments: 0 };
@@ -275,7 +275,7 @@ export class DashboardComponent implements OnInit {
   buildChart(enrollments: any[]): void {
     const colors: Record<string, string> = { ACTIVE: '#4ade80', COMPLETED: '#38bdf8', DROPPED: '#fbbf24', FAILED: '#f87171', WITHDRAWN: '#94a3b8' };
     const counts: Record<string, number> = { ACTIVE: 0, COMPLETED: 0, DROPPED: 0, FAILED: 0, WITHDRAWN: 0 };
-    enrollments.forEach(e => { if (counts[e.status] !== undefined) counts[e.status]++; });
+    for (const e of enrollments) { if (counts[e.status] !== undefined) counts[e.status]++; }
     const total = enrollments.length || 1;
     const circ = 2 * Math.PI * 52;
     let offset = 0;

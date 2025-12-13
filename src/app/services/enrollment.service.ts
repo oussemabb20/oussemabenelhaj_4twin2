@@ -6,8 +6,8 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EnrollmentService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/Enrollment`;
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environment.apiUrl}/Enrollment`;
 
   getAll(): Observable<Enrollment[]> {
     return this.http.get<Enrollment[]>(`${this.apiUrl}/getAllEnrollment`);

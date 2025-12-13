@@ -47,11 +47,11 @@ import { LoadingSpinnerComponent } from '../../../shared';
   `]
 })
 export class CourseDetailComponent implements OnInit {
-  private svc = inject(CourseService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly svc = inject(CourseService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   item: Course | null = null;
   loading = true;
 
-  ngOnInit(): void { const id = this.route.snapshot.params['id']; if (id) { this.svc.getById(+id).subscribe({ next: d => { this.item = d; this.loading = false; }, error: () => this.router.navigate(['/courses']) }); } }
+  ngOnInit(): void { const id = this.route.snapshot.params['id']; if (id) { this.svc.getById(+id).subscribe({ next: d => { this.item = d; this.loading = false; }, error: () => { void this.router.navigate(['/courses']); } }); } }
 }

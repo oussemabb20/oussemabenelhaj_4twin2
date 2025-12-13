@@ -43,12 +43,12 @@ import { LoadingSpinnerComponent } from '../../../shared';
   `]
 })
 export class EnrollmentFormComponent implements OnInit {
-  private fb = inject(FormBuilder);
-  private svc = inject(EnrollmentService);
-  private studentSvc = inject(StudentService);
-  private courseSvc = inject(CourseService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly fb = inject(FormBuilder);
+  private readonly svc = inject(EnrollmentService);
+  private readonly studentSvc = inject(StudentService);
+  private readonly courseSvc = inject(CourseService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   form!: FormGroup;
   students: Student[] = [];
   courses: Course[] = [];
@@ -65,14 +65,14 @@ export class EnrollmentFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id && id !== 'new') { this.editMode = true; this.id = +id; this.load(this.id); } else { this.loading = false; }
   }
-  load(id: number): void { this.svc.getById(id).subscribe({ next: e => { this.form.patchValue({ studentId: e.student?.idStudent || null, courseId: e.course?.idCourse || null, enrollmentDate: e.enrollmentDate, status: e.status, grade: e.grade }); this.loading = false; }, error: () => this.router.navigate(['/enrollments']) }); }
+  load(id: number): void { this.svc.getById(id).subscribe({ next: e => { this.form.patchValue({ studentId: e.student?.idStudent || null, courseId: e.course?.idCourse || null, enrollmentDate: e.enrollmentDate, status: e.status, grade: e.grade }); this.loading = false; }, error: () => { void this.router.navigate(['/enrollments']); } }); }
   inv(f: string): boolean { const c = this.form.get(f); return !!(c && c.invalid && c.touched); }
   submit(): void {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
     this.saving = true;
     const v = this.form.value;
     const data: any = { enrollmentDate: v.enrollmentDate, status: v.status, grade: v.grade, student: { idStudent: v.studentId }, course: { idCourse: v.courseId } };
-    if (this.editMode && this.id) { data.idEnrollment = this.id; this.svc.update(data).subscribe({ next: () => this.router.navigate(['/enrollments']), error: () => this.saving = false }); }
-    else { this.svc.create(data).subscribe({ next: () => this.router.navigate(['/enrollments']), error: () => this.saving = false }); }
+    if (this.editMode && this.id) { data.idEnrollment = this.id; this.svc.update(data).subscribe({ next: () => { void this.router.navigate(['/enrollments']); }, error: () => this.saving = false }); }
+    else { this.svc.create(data).subscribe({ next: () => { void this.router.navigate(['/enrollments']); }, error: () => this.saving = false }); }
   }
 }

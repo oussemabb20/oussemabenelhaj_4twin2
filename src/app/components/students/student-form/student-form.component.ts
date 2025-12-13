@@ -50,11 +50,11 @@ import { LoadingSpinnerComponent } from '../../../shared';
   `]
 })
 export class StudentFormComponent implements OnInit {
-  private fb = inject(FormBuilder);
-  private svc = inject(StudentService);
-  private deptSvc = inject(DepartmentService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly fb = inject(FormBuilder);
+  private readonly svc = inject(StudentService);
+  private readonly deptSvc = inject(DepartmentService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   form!: FormGroup;
   depts: Department[] = [];
   editMode = false;
@@ -68,7 +68,7 @@ export class StudentFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id && id !== 'new') { this.editMode = true; this.id = +id; this.load(this.id); } else { this.loading = false; }
   }
-  load(id: number): void { this.svc.getById(id).subscribe({ next: s => { this.form.patchValue({ ...s, departmentId: s.department?.idDepartment || null }); this.loading = false; }, error: () => this.router.navigate(['/students']) }); }
+  load(id: number): void { this.svc.getById(id).subscribe({ next: s => { this.form.patchValue({ ...s, departmentId: s.department?.idDepartment || null }); this.loading = false; }, error: () => { void this.router.navigate(['/students']); } }); }
   inv(f: string): boolean { const c = this.form.get(f); return !!(c && c.invalid && c.touched); }
   submit(): void {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
@@ -76,7 +76,7 @@ export class StudentFormComponent implements OnInit {
     const v = this.form.value;
     const data: any = { firstName: v.firstName, lastName: v.lastName, email: v.email, phone: v.phone, dateOfBirth: v.dateOfBirth, address: v.address };
     if (v.departmentId) data.department = { idDepartment: v.departmentId };
-    if (this.editMode && this.id) { data.idStudent = this.id; this.svc.update(data).subscribe({ next: () => this.router.navigate(['/students']), error: () => this.saving = false }); }
-    else { this.svc.create(data).subscribe({ next: () => this.router.navigate(['/students']), error: () => this.saving = false }); }
+    if (this.editMode && this.id) { data.idStudent = this.id; this.svc.update(data).subscribe({ next: () => { void this.router.navigate(['/students']); }, error: () => this.saving = false }); }
+    else { this.svc.create(data).subscribe({ next: () => { void this.router.navigate(['/students']); }, error: () => this.saving = false }); }
   }
 }

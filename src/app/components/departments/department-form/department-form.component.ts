@@ -41,10 +41,10 @@ import { LoadingSpinnerComponent } from '../../../shared';
   `]
 })
 export class DepartmentFormComponent implements OnInit {
-  private fb = inject(FormBuilder);
-  private svc = inject(DepartmentService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly fb = inject(FormBuilder);
+  private readonly svc = inject(DepartmentService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   form!: FormGroup;
   editMode = false;
   loading = false;
@@ -56,13 +56,13 @@ export class DepartmentFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id && id !== 'new') { this.editMode = true; this.id = +id; this.load(this.id); }
   }
-  load(id: number): void { this.loading = true; this.svc.getById(id).subscribe({ next: d => { this.form.patchValue(d); this.loading = false; }, error: () => this.router.navigate(['/departments']) }); }
+  load(id: number): void { this.loading = true; this.svc.getById(id).subscribe({ next: d => { this.form.patchValue(d); this.loading = false; }, error: () => { void this.router.navigate(['/departments']); } }); }
   inv(f: string): boolean { const c = this.form.get(f); return !!(c && c.invalid && c.touched); }
   submit(): void {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
     this.saving = true;
     const data = { ...this.form.value };
-    if (this.editMode && this.id) { data.idDepartment = this.id; this.svc.update(data).subscribe({ next: () => this.router.navigate(['/departments']), error: () => this.saving = false }); }
-    else { this.svc.create(data).subscribe({ next: () => this.router.navigate(['/departments']), error: () => this.saving = false }); }
+    if (this.editMode && this.id) { data.idDepartment = this.id; this.svc.update(data).subscribe({ next: () => { void this.router.navigate(['/departments']); }, error: () => this.saving = false }); }
+    else { this.svc.create(data).subscribe({ next: () => { void this.router.navigate(['/departments']); }, error: () => this.saving = false }); }
   }
 }

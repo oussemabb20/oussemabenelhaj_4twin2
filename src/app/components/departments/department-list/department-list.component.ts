@@ -59,7 +59,7 @@ import { LoadingSpinnerComponent, ConfirmDialogComponent } from '../../../shared
   `]
 })
 export class DepartmentListComponent implements OnInit {
-  private svc = inject(DepartmentService);
+  private readonly svc = inject(DepartmentService);
   items: Department[] = [];
   filtered: Department[] = [];
   loading = true;
