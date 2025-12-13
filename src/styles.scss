@@ -337,32 +337,32 @@ textarea.form-control {
   }
   
   &.active {
-    background: rgba(34, 197, 94, 0.1);
-    color: #4ade80;
+    background: rgba(34, 197, 94, 0.15);
+    color: #86efac;
     &::before { background: currentColor; }
   }
   
   &.completed {
     background: rgba(14, 165, 233, 0.15);
-    color: #7dd3fc;
+    color: #bae6fd;
     &::before { background: currentColor; }
   }
   
   &.dropped {
     background: rgba(245, 158, 11, 0.15);
-    color: #fcd34d;
+    color: #fde68a;
     &::before { background: currentColor; }
   }
   
   &.failed {
     background: rgba(239, 68, 68, 0.15);
-    color: #fca5a5;
+    color: #fecaca;
     &::before { background: currentColor; }
   }
   
   &.withdrawn {
     background: rgba(148, 163, 184, 0.15);
-    color: var(--slate-300);
+    color: var(--slate-200);
     &::before { background: currentColor; }
   }
 }
