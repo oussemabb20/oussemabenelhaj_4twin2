@@ -39,7 +39,8 @@
             "prerender": false,
             "ssr": {
               "entry": "server.ts"
-            }
+            },
+            "inlineFonts": false
           },
           "configurations": {
             "production": {
