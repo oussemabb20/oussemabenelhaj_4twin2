@@ -1,14 +1,12 @@
-# Use Node 20 with Ubuntu base
 FROM node:20-bullseye
 
-# Set working directory
 WORKDIR /app
 
-# Install Chromium and dependencies for ChromeHeadless/Puppeteer
+# Install Chromium + required libs for ChromeHeadless
 RUN apt-get update && apt-get install -y \
     chromium \
+    libgbm1 \
     libx11-6 \
-    libxkbcommon0 \
     libxcomposite1 \
     libxdamage1 \
     libxrandr2 \
@@ -27,20 +25,18 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Optional: tell Puppeteer to use system Chromium
+# Tell Puppeteer / Karma to use system Chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# Copy package.json and package-lock.json first (better caching)
+# Copy package.json for caching
 COPY package*.json ./
 
-# Install Node dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the built Angular app (dist folder)
+# Copy dist
 COPY dist ./dist
 
-# Expose the port your app uses
 EXPOSE 4000
 
-# Start your server
 CMD ["node", "dist/oussemabenelhaj_4twin2/server/server.mjs"]
