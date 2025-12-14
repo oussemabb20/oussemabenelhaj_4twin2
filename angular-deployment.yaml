@@ -1,7 +1,9 @@
+# --- DEPLOYMENT for Angular Frontend ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: angular-frontend
+  namespace: devops  # Ensure Deployment is in the correct namespace
   labels:
     app: angular-frontend
 spec:
@@ -39,10 +41,12 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 20
 ---
+# --- SERVICE for Angular Frontend ---
 apiVersion: v1
 kind: Service
 metadata:
   name: angular-frontend-service
+  namespace: devops  # <-- CRITICAL ADDITION: Explicitly set namespace
 spec:
   type: NodePort
   selector:
