@@ -1,27 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { DepartmentFormComponent } from './department-form.component';
 import { DepartmentService } from '../../../services';
+import { commonTestImports, createMockDepartment, provideActivatedRoute } from '../../../testing/test-utils';
 
 describe('DepartmentFormComponent', () => {
   let component: DepartmentFormComponent;
   let fixture: ComponentFixture<DepartmentFormComponent>;
   let departmentService: jasmine.SpyObj<DepartmentService>;
-
-  const mockDepartment = { idDepartment: 1, name: 'CS', location: 'Building A', phone: '123', head: 'Dr. Smith' };
+  const mockDepartment = createMockDepartment();
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('DepartmentService', ['getById', 'create', 'update']);
 
     await TestBed.configureTestingModule({
-      imports: [DepartmentFormComponent, HttpClientTestingModule, RouterTestingModule],
-      providers: [
-        { provide: DepartmentService, useValue: spy },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } }
-      ]
+      imports: [DepartmentFormComponent, ...commonTestImports],
+      providers: [{ provide: DepartmentService, useValue: spy }, provideActivatedRoute()]
     }).compileComponents();
 
     departmentService = TestBed.inject(DepartmentService) as jasmine.SpyObj<DepartmentService>;
@@ -33,12 +28,9 @@ describe('DepartmentFormComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should initialize form', () => {
+  it('should create and initialize form', () => {
     fixture.detectChanges();
+    expect(component).toBeTruthy();
     expect(component.form).toBeTruthy();
     expect(component.editMode).toBeFalse();
   });
@@ -50,14 +42,10 @@ describe('DepartmentFormComponent', () => {
     expect(component.form.valid).toBeTrue();
   });
 
-  it('should check invalid field', () => {
+  it('should check invalid field and create department', () => {
     fixture.detectChanges();
     component.form.get('name')?.markAsTouched();
     expect(component.inv('name')).toBeTrue();
-  });
-
-  it('should create department on valid submit', () => {
-    fixture.detectChanges();
     component.form.patchValue({ name: 'CS', location: 'Building A', phone: '123', head: 'Dr. Smith' });
     spyOn(TestBed.inject(Router), 'navigate');
     component.submit();
@@ -69,18 +57,14 @@ describe('DepartmentFormComponent Edit Mode', () => {
   let component: DepartmentFormComponent;
   let fixture: ComponentFixture<DepartmentFormComponent>;
   let departmentService: jasmine.SpyObj<DepartmentService>;
-
-  const mockDepartment = { idDepartment: 1, name: 'CS', location: 'Building A', phone: '123', head: 'Dr. Smith' };
+  const mockDepartment = createMockDepartment();
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('DepartmentService', ['getById', 'create', 'update']);
 
     await TestBed.configureTestingModule({
-      imports: [DepartmentFormComponent, HttpClientTestingModule, RouterTestingModule],
-      providers: [
-        { provide: DepartmentService, useValue: spy },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: { id: '1' } } } }
-      ]
+      imports: [DepartmentFormComponent, ...commonTestImports],
+      providers: [{ provide: DepartmentService, useValue: spy }, provideActivatedRoute({ id: '1' })]
     }).compileComponents();
 
     departmentService = TestBed.inject(DepartmentService) as jasmine.SpyObj<DepartmentService>;
@@ -91,13 +75,9 @@ describe('DepartmentFormComponent Edit Mode', () => {
     component = fixture.componentInstance;
   });
 
-  it('should load department in edit mode', () => {
+  it('should load and update department in edit mode', () => {
     fixture.detectChanges();
     expect(component.editMode).toBeTrue();
-  });
-
-  it('should update department on submit', () => {
-    fixture.detectChanges();
     spyOn(TestBed.inject(Router), 'navigate');
     component.submit();
     expect(departmentService.update).toHaveBeenCalled();

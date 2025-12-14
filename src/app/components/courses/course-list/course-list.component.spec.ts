@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 import { CourseListComponent } from './course-list.component';
 import { CourseService } from '../../../services';
 import { Course } from '../../../models';
+import { commonTestImports, createMockCourse } from '../../../testing/test-utils';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -12,15 +11,15 @@ describe('CourseListComponent', () => {
   let courseService: jasmine.SpyObj<CourseService>;
 
   const mockCourses: Course[] = [
-    { idCourse: 1, name: 'CS101', code: 'CS101', credit: 3, description: 'Intro to CS' },
-    { idCourse: 2, name: 'Math201', code: 'MATH201', credit: 4, description: 'Calculus' }
+    createMockCourse(),
+    createMockCourse({ idCourse: 2, name: 'Math201', code: 'MATH201', credit: 4, description: 'Calculus' })
   ];
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('CourseService', ['getAll', 'delete']);
 
     await TestBed.configureTestingModule({
-      imports: [CourseListComponent, HttpClientTestingModule, RouterTestingModule],
+      imports: [CourseListComponent, ...commonTestImports],
       providers: [{ provide: CourseService, useValue: spy }]
     }).compileComponents();
 
@@ -32,9 +31,7 @@ describe('CourseListComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(component).toBeTruthy());
 
   it('should load courses on init', () => {
     fixture.detectChanges();
@@ -44,7 +41,7 @@ describe('CourseListComponent', () => {
 
   it('should filter courses by name', () => {
     fixture.detectChanges();
-    component.search = 'cs101';
+    component.search = 'introduction';
     component.filter();
     expect(component.filtered.length).toBe(1);
   });
@@ -56,16 +53,11 @@ describe('CourseListComponent', () => {
     expect(component.filtered.length).toBe(1);
   });
 
-  it('should confirm delete', () => {
+  it('should confirm and delete course', () => {
     fixture.detectChanges();
     component.confirmDel(mockCourses[0]);
     expect(component.selected).toEqual(mockCourses[0]);
     expect(component.showDel).toBeTrue();
-  });
-
-  it('should delete course', () => {
-    fixture.detectChanges();
-    component.selected = mockCourses[0];
     component.del();
     expect(courseService.delete).toHaveBeenCalledWith(1);
   });

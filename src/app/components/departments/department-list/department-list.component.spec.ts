@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 import { DepartmentListComponent } from './department-list.component';
 import { DepartmentService } from '../../../services';
 import { Department } from '../../../models';
+import { commonTestImports, createMockDepartment } from '../../../testing/test-utils';
 
 describe('DepartmentListComponent', () => {
   let component: DepartmentListComponent;
@@ -12,15 +11,15 @@ describe('DepartmentListComponent', () => {
   let departmentService: jasmine.SpyObj<DepartmentService>;
 
   const mockDepartments: Department[] = [
-    { idDepartment: 1, name: 'Computer Science', location: 'Building A', phone: '123', head: 'Dr. Smith' },
-    { idDepartment: 2, name: 'Mathematics', location: 'Building B', phone: '456', head: 'Dr. Jones' }
+    createMockDepartment(),
+    createMockDepartment({ idDepartment: 2, name: 'Mathematics', location: 'Building B', head: 'Dr. Jones' })
   ];
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('DepartmentService', ['getAll', 'delete']);
 
     await TestBed.configureTestingModule({
-      imports: [DepartmentListComponent, HttpClientTestingModule, RouterTestingModule],
+      imports: [DepartmentListComponent, ...commonTestImports],
       providers: [{ provide: DepartmentService, useValue: spy }]
     }).compileComponents();
 
@@ -32,9 +31,7 @@ describe('DepartmentListComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(component).toBeTruthy());
 
   it('should load departments on init', () => {
     fixture.detectChanges();
@@ -56,16 +53,11 @@ describe('DepartmentListComponent', () => {
     expect(component.filtered.length).toBe(1);
   });
 
-  it('should confirm delete', () => {
+  it('should confirm and delete department', () => {
     fixture.detectChanges();
     component.confirmDel(mockDepartments[0]);
     expect(component.selected).toEqual(mockDepartments[0]);
     expect(component.showDel).toBeTrue();
-  });
-
-  it('should delete department', () => {
-    fixture.detectChanges();
-    component.selected = mockDepartments[0];
     component.del();
     expect(departmentService.delete).toHaveBeenCalledWith(1);
   });

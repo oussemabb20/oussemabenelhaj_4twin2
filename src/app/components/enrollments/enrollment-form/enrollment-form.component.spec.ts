@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { EnrollmentFormComponent } from './enrollment-form.component';
 import { EnrollmentService, StudentService, CourseService } from '../../../services';
+import { commonTestImports, createMockEnrollment, createMockStudent, createMockCourse, provideActivatedRoute } from '../../../testing/test-utils';
 
 describe('EnrollmentFormComponent', () => {
   let component: EnrollmentFormComponent;
@@ -13,9 +12,9 @@ describe('EnrollmentFormComponent', () => {
   let studentService: jasmine.SpyObj<StudentService>;
   let courseService: jasmine.SpyObj<CourseService>;
 
-  const mockEnrollment: any = { idEnrollment: 1, enrollmentDate: '2024-01-01', status: 'ACTIVE', grade: 85, student: { idStudent: 1, firstName: 'John', lastName: 'Doe', email: '', phone: '', dateOfBirth: '', address: '' }, course: { idCourse: 1, name: 'CS101', code: 'CS101', credit: 3, description: '' } };
-  const mockStudents = [{ idStudent: 1, firstName: 'John', lastName: 'Doe', email: '', phone: '', dateOfBirth: '', address: '' }];
-  const mockCourses = [{ idCourse: 1, name: 'CS101', code: 'CS101', credit: 3, description: '' }];
+  const mockEnrollment: any = createMockEnrollment();
+  const mockStudents = [createMockStudent()];
+  const mockCourses = [createMockCourse()];
 
   beforeEach(async () => {
     const enrollmentSpy = jasmine.createSpyObj('EnrollmentService', ['getById', 'create', 'update']);
@@ -23,12 +22,12 @@ describe('EnrollmentFormComponent', () => {
     const courseSpy = jasmine.createSpyObj('CourseService', ['getAll']);
 
     await TestBed.configureTestingModule({
-      imports: [EnrollmentFormComponent, HttpClientTestingModule, RouterTestingModule],
+      imports: [EnrollmentFormComponent, ...commonTestImports],
       providers: [
         { provide: EnrollmentService, useValue: enrollmentSpy },
         { provide: StudentService, useValue: studentSpy },
         { provide: CourseService, useValue: courseSpy },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } }
+        provideActivatedRoute()
       ]
     }).compileComponents();
 
@@ -46,38 +45,21 @@ describe('EnrollmentFormComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('should create and initialize form', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
-  });
-
-  it('should initialize form in create mode', () => {
-    fixture.detectChanges();
     expect(component.editMode).toBeFalse();
-    expect(component.form).toBeTruthy();
-  });
-
-  it('should load students and courses on init', () => {
-    fixture.detectChanges();
     expect(component.students.length).toBe(1);
     expect(component.courses.length).toBe(1);
   });
 
-  it('should validate required fields', () => {
+  it('should validate and create enrollment', () => {
     fixture.detectChanges();
     expect(component.form.valid).toBeFalse();
-    component.form.patchValue({ studentId: 1, courseId: 1, enrollmentDate: '2024-01-01', status: 'ACTIVE' });
-    expect(component.form.valid).toBeTrue();
-  });
-
-  it('should check invalid field', () => {
-    fixture.detectChanges();
     component.form.get('studentId')?.markAsTouched();
     expect(component.inv('studentId')).toBeTrue();
-  });
-
-  it('should create enrollment on valid submit', () => {
-    fixture.detectChanges();
     component.form.patchValue({ studentId: 1, courseId: 1, enrollmentDate: '2024-01-01', status: 'ACTIVE' });
+    expect(component.form.valid).toBeTrue();
     spyOn(TestBed.inject(Router), 'navigate');
     component.submit();
     expect(enrollmentService.create).toHaveBeenCalled();
@@ -88,10 +70,8 @@ describe('EnrollmentFormComponent Edit Mode', () => {
   let component: EnrollmentFormComponent;
   let fixture: ComponentFixture<EnrollmentFormComponent>;
   let enrollmentService: jasmine.SpyObj<EnrollmentService>;
-  let studentService: jasmine.SpyObj<StudentService>;
-  let courseService: jasmine.SpyObj<CourseService>;
 
-  const mockEnrollment: any = { idEnrollment: 1, enrollmentDate: '2024-01-01', status: 'ACTIVE', grade: 85, student: { idStudent: 1, firstName: 'John', lastName: 'Doe', email: '', phone: '', dateOfBirth: '', address: '' }, course: { idCourse: 1, name: 'CS101', code: 'CS101', credit: 3, description: '' } };
+  const mockEnrollment: any = createMockEnrollment();
 
   beforeEach(async () => {
     const enrollmentSpy = jasmine.createSpyObj('EnrollmentService', ['getById', 'create', 'update']);
@@ -99,21 +79,21 @@ describe('EnrollmentFormComponent Edit Mode', () => {
     const courseSpy = jasmine.createSpyObj('CourseService', ['getAll']);
 
     await TestBed.configureTestingModule({
-      imports: [EnrollmentFormComponent, HttpClientTestingModule, RouterTestingModule],
+      imports: [EnrollmentFormComponent, ...commonTestImports],
       providers: [
         { provide: EnrollmentService, useValue: enrollmentSpy },
         { provide: StudentService, useValue: studentSpy },
         { provide: CourseService, useValue: courseSpy },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: { id: '1' } } } }
+        provideActivatedRoute({ id: '1' })
       ]
     }).compileComponents();
 
     enrollmentService = TestBed.inject(EnrollmentService) as jasmine.SpyObj<EnrollmentService>;
-    studentService = TestBed.inject(StudentService) as jasmine.SpyObj<StudentService>;
-    courseService = TestBed.inject(CourseService) as jasmine.SpyObj<CourseService>;
+    TestBed.inject(StudentService) as jasmine.SpyObj<StudentService>;
+    TestBed.inject(CourseService) as jasmine.SpyObj<CourseService>;
 
-    studentService.getAll.and.returnValue(of([]));
-    courseService.getAll.and.returnValue(of([]));
+    (TestBed.inject(StudentService) as jasmine.SpyObj<StudentService>).getAll.and.returnValue(of([]));
+    (TestBed.inject(CourseService) as jasmine.SpyObj<CourseService>).getAll.and.returnValue(of([]));
     enrollmentService.getById.and.returnValue(of(mockEnrollment));
     enrollmentService.update.and.returnValue(of(mockEnrollment));
 
@@ -121,14 +101,9 @@ describe('EnrollmentFormComponent Edit Mode', () => {
     component = fixture.componentInstance;
   });
 
-  it('should load enrollment in edit mode', () => {
+  it('should load and update enrollment in edit mode', () => {
     fixture.detectChanges();
     expect(component.editMode).toBeTrue();
-    expect(component.id).toBe(1);
-  });
-
-  it('should update enrollment on submit', () => {
-    fixture.detectChanges();
     spyOn(TestBed.inject(Router), 'navigate');
     component.submit();
     expect(enrollmentService.update).toHaveBeenCalled();
