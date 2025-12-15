@@ -20,7 +20,7 @@ spec:
         - name: angular-frontend
           image: oussemabh1/oussemabenelhaj_4twin2_ang:latest
           ports:
-            - containerPort: 4000
+            - containerPort: 80
           resources:
             requests:
               memory: "256Mi"
@@ -31,19 +31,15 @@ spec:
           readinessProbe:
             httpGet:
               path: /
-              port: 4000
-            initialDelaySeconds: 20      # Increased from 10
+              port: 80
+            initialDelaySeconds: 10
             periodSeconds: 10
-            timeoutSeconds: 5            # ADDED - was missing!
-            failureThreshold: 3          # ADDED - gives 3 chances
           livenessProbe:
             httpGet:
               path: /
-              port: 4000
-            initialDelaySeconds: 30      # Increased from 20
+              port: 80
+            initialDelaySeconds: 20
             periodSeconds: 20
-            timeoutSeconds: 5            # ADDED - was missing!
-            failureThreshold: 3          # ADDED - gives 3 chances
 ---
 # In angular-deployment.yaml
 apiVersion: v1
@@ -58,5 +54,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 4000
+      targetPort: 80
       nodePort: 30081
