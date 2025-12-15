@@ -41,12 +41,12 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 20
 ---
-# --- SERVICE for Angular Frontend ---
+# In angular-deployment.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: angular-frontend-service
-  namespace: devops  # <-- CRITICAL ADDITION: Explicitly set namespace
+  namespace: devops 
 spec:
   type: NodePort
   selector:
@@ -55,4 +55,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 4000
-      nodePort: 30080
+      nodePort: 30081  # <-- CHANGE THIS TO AN UNALLOCATED NUMBER (e.g., 30081)
