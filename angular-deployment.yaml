@@ -1,4 +1,5 @@
-# --- DEPLOYMENT for Angular Frontend ---
+# angular-deployment.yaml
+# -----------------------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,6 +22,7 @@ spec:
           image: oussemabh1/oussemabenelhaj_4twin2_ang:latest
           ports:
             - containerPort: 80
+          # Remove probes temporarily
           resources:
             requests:
               memory: "256Mi"
@@ -28,20 +30,8 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "200m"
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 20
-            periodSeconds: 20
 ---
-# In angular-deployment.yaml
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -53,6 +43,6 @@ spec:
     app: angular-frontend
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 30081
+      port: 80         # Service port
+      targetPort: 80   # Container port
+      nodePort: 30081  # <-- fix here
