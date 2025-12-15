@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: angular-frontend
-  namespace: devops  # Ensure Deployment is in the correct namespace
+  namespace: devops
   labels:
     app: angular-frontend
 spec:
@@ -32,14 +32,18 @@ spec:
             httpGet:
               path: /
               port: 4000
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20      # Increased from 10
             periodSeconds: 10
+            timeoutSeconds: 5            # ADDED - was missing!
+            failureThreshold: 3          # ADDED - gives 3 chances
           livenessProbe:
             httpGet:
               path: /
               port: 4000
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30      # Increased from 20
             periodSeconds: 20
+            timeoutSeconds: 5            # ADDED - was missing!
+            failureThreshold: 3          # ADDED - gives 3 chances
 ---
 # In angular-deployment.yaml
 apiVersion: v1
@@ -55,4 +59,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 4000
-      nodePort: 30081  # <-- CHANGE THIS TO AN UNALLOCATED NUMBER (e.g., 30081)
+      nodePort: 30081
