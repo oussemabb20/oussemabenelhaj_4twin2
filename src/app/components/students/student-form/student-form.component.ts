@@ -68,7 +68,7 @@ export class StudentFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id && id !== 'new') { this.editMode = true; this.id = +id; this.load(this.id); } else { this.loading = false; }
   }
-  load(id: number): void { this.svc.getById(id).subscribe({ next: s => { this.form.patchValue({ ...s, departmentId: s.department?.idDepartment || null }); this.loading = false; }, error: () => { void this.router.navigate(['/students']); } }); }
+  load(id: number): void { this.svc.getById(id).subscribe({ next: s => { this.form.patchValue({ firstName: s.firstname, lastName: s.lastname, email: s.email, phone: s.phone, dateOfBirth: s.dateOfBirth, address: s.address, departmentId: s.department?.idDepartment || null }); this.loading = false; }, error: () => { void this.router.navigate(['/students']); } }); }
   inv(f: string): boolean { const c = this.form.get(f); return !!(c && c.invalid && c.touched); }
   submit(): void {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }

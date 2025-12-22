@@ -39,7 +39,7 @@ import { LoadingSpinnerComponent, ConfirmDialogComponent } from '../../../shared
                 <td>
                   <div class="user">
                     <div class="avatar" [style.background]="getColor(s)">{{ initials(s) }}</div>
-                    <div><span class="name">{{ s.firstName }} {{ s.lastName }}</span><span class="id">#{{ s.idStudent }}</span></div>
+                    <div><span class="name">{{ s.firstname }} {{ s.lastname }}</span><span class="id">#{{ s.idStudent }}</span></div>
                   </div>
                 </td>
                 <td><a [href]="'mailto:' + s.email">{{ s.email }}</a></td>
@@ -59,7 +59,7 @@ import { LoadingSpinnerComponent, ConfirmDialogComponent } from '../../../shared
         </div>
       </div>
     </div>
-    <app-confirm-dialog [isOpen]="showDel" title="Delete Student" [message]="'Delete ' + selected?.firstName + ' ' + selected?.lastName + '?'" (confirmed)="del()" (cancelled)="showDel = false"></app-confirm-dialog>
+    <app-confirm-dialog [isOpen]="showDel" title="Delete Student" [message]="'Delete ' + selected?.firstname + ' ' + selected?.lastname + '?'" (confirmed)="del()" (cancelled)="showDel = false"></app-confirm-dialog>
   `,
   styles: [`
     .page { padding: var(--space-8); max-width: 1440px; margin: 0 auto; }
@@ -91,8 +91,8 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit(): void { this.load(); }
   load(): void { this.svc.getAll().subscribe({ next: d => { this.items = d; this.filtered = d; this.loading = false; }, error: () => this.loading = false }); }
-  filter(): void { const t = this.search.toLowerCase(); this.filtered = this.items.filter(s => (s.firstName + ' ' + s.lastName + ' ' + s.email).toLowerCase().includes(t)); }
-  initials(s: Student): string { return (s.firstName[0] + s.lastName[0]).toUpperCase(); }
+  filter(): void { const t = this.search.toLowerCase(); this.filtered = this.items.filter(s => (s.firstname + ' ' + s.lastname + ' ' + s.email).toLowerCase().includes(t)); }
+  initials(s: Student): string { return ((s.firstname?.[0] || '') + (s.lastname?.[0] || '')).toUpperCase(); }
   getColor(s: Student): string { return this.colors[(s.idStudent || 0) % this.colors.length]; }
   confirmDel(s: Student): void { this.selected = s; this.showDel = true; }
   del(): void { if (this.selected?.idStudent) { this.svc.delete(this.selected.idStudent).subscribe({ next: () => { this.items = this.items.filter(i => i.idStudent !== this.selected?.idStudent); this.filter(); this.showDel = false; }, error: () => this.showDel = false }); } }

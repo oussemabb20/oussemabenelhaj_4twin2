@@ -27,7 +27,7 @@ import { LoadingSpinnerComponent, ConfirmDialogComponent } from '../../../shared
             <thead><tr><th>Student</th><th>Course</th><th>Date</th><th>Grade</th><th>Status</th><th></th></tr></thead>
             <tbody>
               <tr *ngFor="let e of filtered">
-                <td><div class="student"><div class="avatar" [style.background]="getColor(e)">{{ initials(e) }}</div><span>{{ e.student?.firstName }} {{ e.student?.lastName }}</span></div></td>
+                <td><div class="student"><div class="avatar" [style.background]="getColor(e)">{{ initials(e) }}</div><span>{{ e.student?.firstname }} {{ e.student?.lastname }}</span></div></td>
                 <td><span class="course-tag">{{ e.course?.name }}</span></td>
                 <td>{{ e.enrollmentDate }}</td>
                 <td><span class="grade" [class.na]="e.grade === null">{{ e.grade ?? '—' }}</span></td>
@@ -71,8 +71,8 @@ export class EnrollmentListComponent implements OnInit {
 
   ngOnInit(): void { this.load(); }
   load(): void { this.svc.getAll().subscribe({ next: d => { this.items = d; this.filtered = d; this.loading = false; }, error: () => this.loading = false }); }
-  filter(): void { const t = this.search.toLowerCase(); this.filtered = this.items.filter(i => (i.student?.firstName + ' ' + i.student?.lastName + ' ' + i.course?.name).toLowerCase().includes(t)); }
-  initials(e: Enrollment): string { return e.student ? (e.student.firstName[0] + e.student.lastName[0]).toUpperCase() : '??'; }
+  filter(): void { const t = this.search.toLowerCase(); this.filtered = this.items.filter(i => (i.student?.firstname + ' ' + i.student?.lastname + ' ' + i.course?.name).toLowerCase().includes(t)); }
+  initials(e: Enrollment): string { return e.student ? ((e.student.firstname?.[0] || '') + (e.student.lastname?.[0] || '')).toUpperCase() : '??'; }
   getColor(e: Enrollment): string { return this.colors[(e.idEnrollment || 0) % this.colors.length]; }
   confirmDel(e: Enrollment): void { this.selected = e; this.showDel = true; }
   del(): void { if (this.selected?.idEnrollment) { this.svc.delete(this.selected.idEnrollment).subscribe({ next: () => { this.items = this.items.filter(i => i.idEnrollment !== this.selected?.idEnrollment); this.filter(); this.showDel = false; }, error: () => this.showDel = false }); } }

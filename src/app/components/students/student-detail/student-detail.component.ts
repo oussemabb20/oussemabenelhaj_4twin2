@@ -16,7 +16,7 @@ import { LoadingSpinnerComponent } from '../../../shared';
       <article class="detail-card" *ngIf="!loading && item">
         <header class="card-header">
           <div class="avatar">{{ initials() }}</div>
-          <div class="info"><h1>{{ item.firstName }} {{ item.lastName }}</h1><span class="id">Student ID: {{ item.idStudent }}</span></div>
+          <div class="info"><h1>{{ item.firstname }} {{ item.lastname }}</h1><span class="id">Student ID: {{ item.idStudent }}</span></div>
           <a [routerLink]="['/students', item.idStudent, 'edit']" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit</a>
         </header>
         <section class="card-body">
@@ -54,5 +54,5 @@ export class StudentDetailComponent implements OnInit {
   loading = true;
 
   ngOnInit(): void { const id = this.route.snapshot.params['id']; if (id) { this.svc.getById(+id).subscribe({ next: d => { this.item = d; this.loading = false; }, error: () => { void this.router.navigate(['/students']); } }); } }
-  initials(): string { return this.item ? (this.item.firstName[0] + this.item.lastName[0]).toUpperCase() : ''; }
+  initials(): string { return this.item ? ((this.item.firstname?.[0] || '') + (this.item.lastname?.[0] || '')).toUpperCase() : ''; }
 }
